@@ -23,32 +23,45 @@ document.getElementById('avvia').addEventListener('click', function(){
     // var notification = new Notification("Sfida la sorte", {body: 'Hai 30 secondi per memorizzare questa sequenza di numeri che poi dovrai inserirli: ' + listaNumeriPc });
     // setTimeout(function() {notification.close()}, 3000);
   
+
+    // timer di 30 secondi
     setTimeout(myFunction, 3000);
     alert('Hai 30 secondi per memorizzare questa sequenza di numeri che poi dovrai inserirli: ' + listaNumeriPc );    
 
     var listaUtente = [];   
 
-    function myFunction(){              
+    function myFunction(){  
+        
+        // l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt()
         while(listaUtente.length < 5){
             numeroUtente = parseInt(prompt('Inserisci, uno alla volta, la sequenza di numeri:'));
             if(numeroUtente > 0 && numeroUtente <= 100 && listaUtente.indexOf(numeroUtente) === -1){ 
                 listaUtente.push(numeroUtente);
             } else {
                 alert('I numeri sono compresi tra 1 e 100 e non devono essere ripetuti');
-            }
-            
+            }            
         }  
-        console.log(listaUtente);  
+        console.log(listaUtente); 
 
-        var i = 0;
-        while(i < listaNumeriPc.length){
-            if(listaUtente[i] == listaNumeriPc.length){
-                console.log('hai vinto');
-            } else {
-                console.log('hai perso');
+
+        // quanti e quali dei numeri da indovinare sono stati individuati
+        function arrayMatch(listaUtente, listaNumeriPc) {
+            var arr = [];
+            listaUtente = listaUtente.toString().split(',').map(Number);
+            listaNumeriPc = listaNumeriPc.toString().split(',').map(Number);
+            // console.log(listaUtente);
+            
+            for (var i in listaUtente) {
+               if(listaNumeriPc.indexOf(listaUtente[i]) !== -1)
+               arr.push(listaUtente[i]);
             }
-            i++;
+            // console.log(arr);
+         
+            return arr.sort((x,y) => x-y);
         }
-     
+         
+        console.log('I numeri seguenti, sono quelli che hai indovinato: ' + arrayMatch(listaUtente, listaNumeriPc));
+    
     }       
+    
 });
