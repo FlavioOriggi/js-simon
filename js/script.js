@@ -15,7 +15,7 @@ document.getElementById('avvia').addEventListener('click', function(){
 
     // -Un alert() espone 5 numeri generati casualmente.
     var listaNumeriPc =[];
-    var numeriDaIndovinare = 10;  
+    var numeriDaIndovinare = 5;  
     while(listaNumeriPc.length < numeriDaIndovinare){
         var numeroRandomPc = Math.floor(Math.random() * 100) + 1;
         if(listaNumeriPc.indexOf(numeroRandomPc) === -1) listaNumeriPc.push(numeroRandomPc);
