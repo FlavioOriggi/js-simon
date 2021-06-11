@@ -45,8 +45,11 @@ document.getElementById('avvia').addEventListener('click', function(){
 
 
         // quanti e quali dei numeri da indovinare sono stati individuati
+
+        var arr = [];
+
         function arrayMatch(listaNumeriPc, listaUtente) {
-            var arr = [];
+            
             listaNumeriPc = listaNumeriPc.toString().split(',').map(Number);
             listaUtente = listaUtente.toString().split(',').map(Number);
             // console.log(listaUtente);
@@ -58,10 +61,14 @@ document.getElementById('avvia').addEventListener('click', function(){
             // console.log(arr);
          
             return arr.sort((x,y) => x-y);
-        }
-         
-        console.log('I numeri seguenti, sono quelli che hai indovinato: ' + arrayMatch(listaNumeriPc, listaUtente,));
+        }   
         
+        document.getElementById('testo').innerHTML =  'I numeri seguenti, sono quelli che hai indovinato: ' + arrayMatch(listaNumeriPc, listaUtente,) + '. Hai totalizzato ' + arr.length + ' punti';       
+        
+    
+        // console.log('I numeri seguenti, sono quelli che hai indovinato: ' + arrayMatch(listaNumeriPc, listaUtente,) + '. Hai totalizzato ' + arr.length + ' punti');
+
+
     
     }       
     
