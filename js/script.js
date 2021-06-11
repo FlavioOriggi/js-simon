@@ -45,22 +45,23 @@ document.getElementById('avvia').addEventListener('click', function(){
 
 
         // quanti e quali dei numeri da indovinare sono stati individuati
-        function arrayMatch(listaUtente, listaNumeriPc) {
+        function arrayMatch(listaNumeriPc, listaUtente) {
             var arr = [];
-            listaUtente = listaUtente.toString().split(',').map(Number);
             listaNumeriPc = listaNumeriPc.toString().split(',').map(Number);
+            listaUtente = listaUtente.toString().split(',').map(Number);
             // console.log(listaUtente);
             
-            for (var i in listaUtente) {
-               if(listaNumeriPc.indexOf(listaUtente[i]) !== -1)
-               arr.push(listaUtente[i]);
+            for (var i in listaNumeriPc) {
+               if(listaUtente.indexOf(listaNumeriPc[i]) !== -1)
+               arr.push(listaNumeriPc[i]);
             }
             // console.log(arr);
          
             return arr.sort((x,y) => x-y);
         }
          
-        console.log('I numeri seguenti, sono quelli che hai indovinato: ' + arrayMatch(listaUtente, listaNumeriPc));
+        console.log('I numeri seguenti, sono quelli che hai indovinato: ' + arrayMatch(listaNumeriPc, listaUtente,));
+        
     
     }       
     
