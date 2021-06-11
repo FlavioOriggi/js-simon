@@ -42,7 +42,7 @@ document.getElementById('avvia').addEventListener('click', function(){
 
         var i = 0;
         while(i < listaNumeriPc.length){
-            if(listaUtente[i] == listaNumeriPc[i]){
+            if(listaUtente[i] == listaNumeriPc.length){
                 console.log('hai vinto');
             } else {
                 console.log('hai perso');
@@ -50,9 +50,5 @@ document.getElementById('avvia').addEventListener('click', function(){
             i++;
         }
      
-    }      
-
-    
-    
-    
+    }       
 });
