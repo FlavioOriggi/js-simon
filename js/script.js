@@ -9,22 +9,50 @@
 //  e quali dei numeri da indovinare sono stati individuati.
 
 
-var listaNumeriPc =[];
+document.getElementById('avvia').addEventListener('click', function(){
 
-while(listaNumeriPc.length < 5){
-    var numeroRandomPc = Math.floor(Math.random() * 100) + 1;
-    if(listaNumeriPc.indexOf(numeroRandomPc) === -1) listaNumeriPc.push(numeroRandomPc);
-}
+    var listaNumeriPc =[];
 
-alert('Hai 30 secondi per memorizzare questa sequenza di numeri che poi dovrai inserirli: ' + listaNumeriPc );
-console.log(listaNumeriPc);
+    while(listaNumeriPc.length < 5){
+        var numeroRandomPc = Math.floor(Math.random() * 100) + 1;
+        if(listaNumeriPc.indexOf(numeroRandomPc) === -1) listaNumeriPc.push(numeroRandomPc);
+    }   
+    console.log(listaNumeriPc);
+   
+    // funziona anche con alert, ma con alert non si chiude poichè bisogna cliccare "Ok" per chiuderlo
+    // var notification = new Notification("Sfida la sorte", {body: 'Hai 30 secondi per memorizzare questa sequenza di numeri che poi dovrai inserirli: ' + listaNumeriPc });
+    // setTimeout(function() {notification.close()}, 3000);
+  
+    setTimeout(myFunction, 3000);
+    alert('Hai 30 secondi per memorizzare questa sequenza di numeri che poi dovrai inserirli: ' + listaNumeriPc );    
 
+    var listaUtente = [];   
 
-setTimeout(myFunction, 3000);
+    function myFunction(){              
+        while(listaUtente.length < 5){
+            numeroUtente = parseInt(prompt('Inserisci, uno alla volta, la sequenza di numeri:'));
+            if(numeroUtente > 0 && numeroUtente <= 100 && listaUtente.indexOf(numeroUtente) === -1){ 
+                listaUtente.push(numeroUtente);
+            } else {
+                alert('I numeri sono compresi tra 1 e 100 e non devono essere ripetuti');
+            }
+            
+        }  
+        console.log(listaUtente);  
 
-var listaUtente = [];
-console.log(listaUtente);
+        var i = 0;
+        while(i < listaNumeriPc.length){
+            if(listaUtente[i] == listaNumeriPc[i]){
+                console.log('hai vinto');
+            } else {
+                console.log('hai perso');
+            }
+            i++;
+        }
+     
+    }      
 
-function myFunction(){
-    listaUtente += parseInt(prompt('Inserisci la sequenza di numeri:'))
-}
+    
+    
+    
+});
