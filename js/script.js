@@ -26,7 +26,7 @@ document.getElementById('avvia').addEventListener('click', function(){
 
     // timer di 30 secondi
     setTimeout(myFunction, 3000);
-    alert('Hai 30 secondi per memorizzare questa sequenza di numeri che poi dovrai inserirli: ' + listaNumeriPc );    
+    alert('Hai 30 secondi per memorizzare questa sequenza di numeri che poi dovrai riscrivere: ' + listaNumeriPc );    
 
     var listaUtente = [];   
 
@@ -41,29 +41,43 @@ document.getElementById('avvia').addEventListener('click', function(){
                 alert('I numeri sono compresi tra 1 e 100 e non devono essere ripetuti');
             }            
         }  
-        console.log(listaUtente); 
+        // console.log(listaUtente); 
+
+
+        var listaGiusti = [];
+        var listaSbagliati = [];
+
+        for(var i = 0; i < listaNumeriPc.length; i++){
+            if (listaUtente == listaNumeriPc){
+                listaGiusti.push(listaUtente);
+            } else{
+                listaSbagliati.push(listaUtente);
+            }
+        }
+        console.log('hai indovinato questi: ' + listaGiusti);
+        console.log('hai sbagliato questi numeri: ' + listaSbagliati);
 
 
         // quanti e quali dei numeri da indovinare sono stati individuati
 
-        var arr = [];
+        // var arr = [];
 
-        function arrayMatch(listaNumeriPc, listaUtente) {
+        // function arrayMatch(listaNumeriPc, listaUtente) {
             
-            listaNumeriPc = listaNumeriPc.toString().split(',').map(Number);
-            listaUtente = listaUtente.toString().split(',').map(Number);
-            // console.log(listaUtente);
+        //     listaNumeriPc = listaNumeriPc.toString().split(',').map(Number);
+        //     listaUtente = listaUtente.toString().split(',').map(Number);
+        //     // console.log(listaUtente);
             
-            for (var i in listaNumeriPc) {
-               if(listaUtente.indexOf(listaNumeriPc[i]) !== -1)
-               arr.push(listaNumeriPc[i]);
-            }
-            // console.log(arr);
+        //     for (var i in listaNumeriPc) {
+        //        if(listaUtente.indexOf(listaNumeriPc[i]) !== -1)
+        //        arr.push(listaNumeriPc[i]);
+        //     }
+        //     // console.log(arr);
          
-            return arr.sort((x,y) => x-y);
-        }   
+        //     return arr.sort((x,y) => x-y);
+        // }   
         
-        document.getElementById('testo').innerHTML =  'I numeri seguenti, sono quelli che hai indovinato: ' + arrayMatch(listaNumeriPc, listaUtente,) + '. Hai totalizzato ' + arr.length + ' punti';       
+        // document.getElementById('testo').innerHTML =  'I numeri seguenti, sono quelli che hai indovinato: ' + arrayMatch(listaNumeriPc, listaUtente,) + '. Hai totalizzato ' + arr.length + ' punti';       
         
     
         // console.log('I numeri seguenti, sono quelli che hai indovinato: ' + arrayMatch(listaNumeriPc, listaUtente,) + '. Hai totalizzato ' + arr.length + ' punti');
