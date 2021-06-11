@@ -1,4 +1,4 @@
-// -Un alert() espone 5 numeri generati casualmente.-
+// -Un alert() espone 5 numeri generati casualmente.
 
 // -Da li parte un timer di 30 secondi.
 
@@ -11,8 +11,10 @@
 
 document.getElementById('avvia').addEventListener('click', function(){
 
-    var listaNumeriPc =[];
+    document.getElementById('testo').innerHTML = '';
 
+    // -Un alert() espone 5 numeri generati casualmente.
+    var listaNumeriPc =[];
     while(listaNumeriPc.length < 5){
         var numeroRandomPc = Math.floor(Math.random() * 100) + 1;
         if(listaNumeriPc.indexOf(numeroRandomPc) === -1) listaNumeriPc.push(numeroRandomPc);
@@ -26,64 +28,57 @@ document.getElementById('avvia').addEventListener('click', function(){
 
     // timer di 30 secondi
     setTimeout(myFunction, 3000);
-    alert('Hai 30 secondi per memorizzare questa sequenza di numeri che poi dovrai riscrivere: ' + listaNumeriPc );    
+    alert('Hai 30 secondi per memorizzare questa sequenza di numeri che poi dovrai riscrivere: ' + listaNumeriPc);    
 
-    var listaUtente = [];   
-
+    var listaUtente = [];     
+    var listaGiusti = [];  
+    var numeriDaIndovinare = 5;  
+    
     function myFunction(){  
         
         // l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt()
-        while(listaUtente.length < 5){
+        while(listaUtente.length < numeriDaIndovinare){
             numeroUtente = parseInt(prompt('Inserisci, uno alla volta, la sequenza di numeri:'));
             if(numeroUtente > 0 && numeroUtente <= 100 && listaUtente.indexOf(numeroUtente) === -1){ 
                 listaUtente.push(numeroUtente);
             } else {
                 alert('I numeri sono compresi tra 1 e 100 e non devono essere ripetuti');
-            }            
-        }  
-        // console.log(listaUtente); 
+            }  
 
+            // -Dopo che sono stati inseriti i 5 numeri, il software dice quanti
+            //  e quali dei numeri da indovinare sono stati individuati.          
 
-        var listaGiusti = [];
-        var listaSbagliati = [];
+            if (listaNumeriPc.includes(numeroUtente)){                
+                listaGiusti.push(numeroUtente);
+                if(listaGiusti.length == 1){                
+                    document.getElementById('testo').innerHTML = 'hai indovinato un solo numero su ' + numeriDaIndovinare + ' da ricordare, ed è il seguente: ' + listaGiusti +  '.';
+                } else if (listaGiusti.length > 1 && listaGiusti.length < numeriDaIndovinare){
+                    document.getElementById('testo').innerHTML = 'hai indovinato ' + listaGiusti.length + ' numeri su ' + numeriDaIndovinare + ' e sono i seguenti: '+ listaGiusti + '.';                    
+                } else {                    
+                    document.getElementById('testo').innerHTML = 'hai indovinato TUTTI E I ' + numeriDaIndovinare + ' NUMERI! La sequenza è: '+ listaGiusti + '.';
+                }               
+            }  else if (listaGiusti.length == 0){
+                document.getElementById('testo').innerHTML = 'Hai fallito il test. Nessun numero inserito era tra quelli da memorizzare'
+            }         
+        }    
 
-        for(var i = 0; i < listaNumeriPc.length; i++){
-            if (listaUtente == listaNumeriPc){
-                listaGiusti.push(listaUtente);
-            } else{
-                listaSbagliati.push(listaUtente);
-            }
-        }
-        console.log('hai indovinato questi: ' + listaGiusti);
-        console.log('hai sbagliato questi numeri: ' + listaSbagliati);
-
-
-        // quanti e quali dei numeri da indovinare sono stati individuati
+        // ALTERNATIVA INIZIALE: quanti e quali dei numeri da indovinare sono stati individuati
 
         // var arr = [];
-
         // function arrayMatch(listaNumeriPc, listaUtente) {
             
         //     listaNumeriPc = listaNumeriPc.toString().split(',').map(Number);
-        //     listaUtente = listaUtente.toString().split(',').map(Number);
-        //     // console.log(listaUtente);
+        //     listaUtente = listaUtente.toString().split(',').map(Number);        
             
         //     for (var i in listaNumeriPc) {
         //        if(listaUtente.indexOf(listaNumeriPc[i]) !== -1)
         //        arr.push(listaNumeriPc[i]);
-        //     }
-        //     // console.log(arr);
-         
+        //     }               
         //     return arr.sort((x,y) => x-y);
         // }   
         
-        // document.getElementById('testo').innerHTML =  'I numeri seguenti, sono quelli che hai indovinato: ' + arrayMatch(listaNumeriPc, listaUtente,) + '. Hai totalizzato ' + arr.length + ' punti';       
-        
-    
-        // console.log('I numeri seguenti, sono quelli che hai indovinato: ' + arrayMatch(listaNumeriPc, listaUtente,) + '. Hai totalizzato ' + arr.length + ' punti');
-
-
-    
+        // document.getElementById('testo').innerHTML =  'I numeri seguenti, sono quelli che hai indovinato: ' + arrayMatch(listaNumeriPc, listaUtente,) + '. Hai totalizzato ' + arr.length + ' punti';           
+           
     }       
     
 });
