@@ -15,7 +15,8 @@ document.getElementById('avvia').addEventListener('click', function(){
 
     // -Un alert() espone 5 numeri generati casualmente.
     var listaNumeriPc =[];
-    while(listaNumeriPc.length < 5){
+    var numeriDaIndovinare = 10;  
+    while(listaNumeriPc.length < numeriDaIndovinare){
         var numeroRandomPc = Math.floor(Math.random() * 100) + 1;
         if(listaNumeriPc.indexOf(numeroRandomPc) === -1) listaNumeriPc.push(numeroRandomPc);
     }   
@@ -31,8 +32,7 @@ document.getElementById('avvia').addEventListener('click', function(){
     alert('Hai 30 secondi per memorizzare questa sequenza di numeri che poi dovrai riscrivere: ' + listaNumeriPc);    
 
     var listaUtente = [];     
-    var listaGiusti = [];  
-    var numeriDaIndovinare = 5;  
+    var listaGiusti = [];     
     
     function myFunction(){  
         
@@ -46,8 +46,7 @@ document.getElementById('avvia').addEventListener('click', function(){
             }  
 
             // -Dopo che sono stati inseriti i 5 numeri, il software dice quanti
-            //  e quali dei numeri da indovinare sono stati individuati.          
-
+            //  e quali dei numeri da indovinare sono stati individuati.        
             if (listaNumeriPc.includes(numeroUtente)){                
                 listaGiusti.push(numeroUtente);
                 if(listaGiusti.length == 1){                
